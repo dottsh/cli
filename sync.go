@@ -30,7 +30,7 @@ func isInDir(search string, name string, entries []os.DirEntry) bool {
 		} else {
 			log.Printf("- %v", file.Name())
 			if strings.Contains(file.Name(), search) {
-				log.Printf("+ contains => %v", file.Name())
+				log.Printf("+ contains => %v in %v", search, file.Name())
 				return true
 			}
 		}
