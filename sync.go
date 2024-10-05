@@ -23,7 +23,9 @@ func isInDir(search string, name string, entries []os.DirEntry) bool {
 			if err != nil {
 				log.Fatal(err)
 			}
-			return isInDir(search, dirPath, repoFiles)
+			if isInDir(search, dirPath, repoFiles) {
+				return true
+			}
 		} else if file.Name() == search {
 			return true
 		}
