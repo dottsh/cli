@@ -14,18 +14,16 @@ func init() {
 	root.AddCommand(syncCommand)
 }
 
-func isInDir(search string, name string, files []os.DirEntry) bool {
+func isInDir(search string, name string, entries []os.DirEntry) bool {
 	log.Printf("+ %v", name)
-	for _, file := range files {
+	for _, file := range entries {
 		if file.IsDir() {
 			dirPath := filepath.Join(name, file.Name())
 			repoFiles, err := os.ReadDir(dirPath)
 			if err != nil {
 				log.Fatal(err)
 			}
-			if isInDir(search, dirPath, repoFiles) {
-				return true
-			}
+			return isInDir(search, dirPath, repoFiles)
 		} else if file.Name() == search {
 			return true
 		}
