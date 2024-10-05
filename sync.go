@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -26,8 +27,12 @@ func isInDir(search string, name string, entries []os.DirEntry) bool {
 			if isInDir(search, dirPath, repoFiles) {
 				return true
 			}
-		} else if file.Name() == search {
-			return true
+		} else {
+			log.Printf("- %v", file.Name())
+			if strings.Contains(file.Name(), search) {
+				log.Printf("+ contains => %v", file.Name())
+				return true
+			}
 		}
 	}
 	return false

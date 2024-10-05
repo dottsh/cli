@@ -3,7 +3,7 @@ packages:
     repo: git@github.com:dottsh/example-dotfiles.git
     dest: /tmp/asdf
     items:
-      - name: mydotfile.foo
+      - name: HEAD
         type: file
         dest: ~/.zshrc
   - group: brew dev stuff
