@@ -10,15 +10,9 @@ import (
 )
 
 type Config struct {
-	Name     string
 	Packages []Group `yaml:"packages"`
 }
 
-type Group struct {
-	Group string `yaml:"group"`
-	Items []Item `yaml:"items"`
-	Repo  string `yaml:"repo" required:"false"`
-}
 type ItemType string
 
 const (
@@ -26,6 +20,11 @@ const (
 	Brew ItemType = "brew"
 )
 
+type Group struct {
+	Group string `yaml:"group"`
+	Repo  string `yaml:"repo" required:"false"`
+	Items []Item `yaml:"items"`
+}
 type Item struct {
 	Name string   `yaml:"name"`
 	Type ItemType `yaml:"type" required:"false"`
