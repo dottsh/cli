@@ -4,6 +4,7 @@ go 1.22.0
 
 require (
 	github.com/mateothegreat/go-multilog v0.0.0-20240827064703-d95ef77859ba
+	github.com/mateothegreat/go-util v0.0.0-20240812031932-d120d349cd20
 	github.com/spf13/cobra v1.8.1
 )
 

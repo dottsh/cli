@@ -1,9 +1,8 @@
 package main
 
 import (
-	"log"
-
 	"github.com/spf13/cobra"
+	"log"
 )
 
 func init() {
@@ -17,5 +16,12 @@ var syncCommand = &cobra.Command{
 	Short: "sync changes",
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Println("syncing changes...")
+		config, err := GetConfig()
+		if err != nil {
+			log.Fatal(err)
+		}
+		for _, group := range config.Packages {
+			log.Printf("syncing group: %v", group.Group)
+		}
 	},
 }
