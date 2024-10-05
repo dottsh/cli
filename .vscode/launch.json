@@ -5,13 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run Dott",
+      "name": "sync",
       "type": "go",
       "request": "launch",
-      "mode": "auto",
-      "program": "${workspaceFolder}/main.go",
-      "args": ["sync"],
-      "console": "integratedTerminal"
+      "mode": "debug",
+      "program": ".",
+      "env": {},
+      "args": [
+        "init"
+      ]
     }
   ]
 }
