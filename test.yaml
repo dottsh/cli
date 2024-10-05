@@ -1,9 +1,9 @@
 packages:
   - group: dotfiles
     repo: git@github.com:dottsh/example-dotfiles.git
-    dest: "/Users/kyledavis/asdf"
+    dest: /tmp/asdf
     items:
-      - name: .zshrc
+      - name: mydotfile.foo
         type: file
         dest: ~/.zshrc
   - group: brew dev stuff

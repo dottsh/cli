@@ -13,20 +13,20 @@ func init() {
 	syncCommand.Flags().StringSliceP("tag", "t", []string{}, "the tags to filter the repositories by")
 	root.AddCommand(syncCommand)
 }
-func isInDir(name string, files []os.DirEntry) bool {
+
+func isInDir(search string, name string, files []os.DirEntry) bool {
+	log.Printf("+ %v", name)
 	for _, file := range files {
 		if file.IsDir() {
-			log.Printf("reading dir: %v", filepath.Join(file.Name(), name))
-			repoFiles, err := os.ReadDir(file.Name())
+			dirPath := filepath.Join(name, file.Name())
+			repoFiles, err := os.ReadDir(dirPath)
 			if err != nil {
 				log.Fatal(err)
 			}
-			absPath, err := filepath.Abs(file.Name())
-			if err != nil {
-				log.Fatal(err)
+			if isInDir(search, dirPath, repoFiles) {
+				return true
 			}
-			return isInDir(filepath.Join(absPath, name), repoFiles)
-		} else if file.Name() == name {
+		} else if file.Name() == search {
 			return true
 		}
 	}
@@ -59,8 +59,8 @@ var syncCommand = &cobra.Command{
 					if err != nil {
 						log.Fatal(err)
 					}
-					if isInDir(group.Dest, repoFiles) {
-						log.Printf("repo already exists: %v", group.Dest)
+					if isInDir(item.Name, group.Dest, repoFiles) {
+						log.Printf("MATCH, copying now: %v --> %v", item.Name, item.Dest)
 					}
 					if item.Type == File {
 						log.Printf("syncing file: %v", item.Name)
