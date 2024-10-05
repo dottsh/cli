@@ -22,6 +22,14 @@ var syncCommand = &cobra.Command{
 		}
 		for _, group := range config.Packages {
 			log.Printf("syncing group: %v", group.Group)
+			for _, item := range group.Items {
+				log.Printf("syncing item: %v", item.Name)
+				if item.Type == File {
+					log.Printf("syncing file: %v", item.Name)
+				} else if item.Type == Brew {
+					log.Printf("syncing brew: %v", item.Name)
+				}
+			}
 		}
 	},
 }
