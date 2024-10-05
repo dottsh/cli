@@ -1,12 +1,12 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 
 	"github.com/mateothegreat/go-util/files"
 	"github.com/mateothegreat/go-util/validation"
+	"gopkg.in/yaml.v2"
 )
 
 type Config struct {
@@ -17,11 +17,19 @@ type Config struct {
 type Group struct {
 	Group string `yaml:"group"`
 	Items []Item `yaml:"items"`
+	Repo  string `yaml:"repo" required:"false"`
 }
+type ItemType string
+
+const (
+	File ItemType = "file"
+	Brew ItemType = "brew"
+)
 
 type Item struct {
-	Name string `yaml:"name"`
-	Type string `yaml:"type"`
+	Name string   `yaml:"name"`
+	Type ItemType `yaml:"type" required:"false"`
+	Dest string   `yaml:"dest" required:"false"`
 }
 
 func GetConfig() (*Config, error) {
@@ -34,7 +42,7 @@ func GetConfig() (*Config, error) {
 		return nil, err
 	}
 
-	err = json.Unmarshal(f, config)
+	err = yaml.Unmarshal(f, config)
 	if err != nil {
 		return nil, err
 	}

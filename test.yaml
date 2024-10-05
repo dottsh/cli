@@ -1,15 +1,19 @@
 packages:
   - group: dotfiles
     repo: git@github.com:dottsh/example-dotfiles.git
-    dest: ~/
+    dest: "~/"
     items:
       - name: .zshrc
         type: file
+        dest: ~/.zshrc
   - group: brew dev stuff
     items:
       - name: infisical/get-cli/infisical
         type: brew
+        dest: /opt/homebrew/bin
       - name: libpq
         type: brew
+        dest: /opt/homebrew/bin
       - name: yq
         type: brew
+        dest: /opt/homebrew/bin
