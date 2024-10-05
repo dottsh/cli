@@ -23,6 +23,7 @@ const (
 type Group struct {
 	Group string `yaml:"group"`
 	Repo  string `yaml:"repo" required:"false"`
+	Dest  string `yaml:"dest" required:"false"`
 	Items []Item `yaml:"items"`
 }
 type Item struct {

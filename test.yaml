@@ -1,7 +1,7 @@
 packages:
   - group: dotfiles
     repo: git@github.com:dottsh/example-dotfiles.git
-    dest: "~/"
+    dest: "/Users/kyledavis/asdf"
     items:
       - name: .zshrc
         type: file
