@@ -27,6 +27,12 @@ Place a `dott.yaml` file in your home directory with the following:
 
 ```yaml
 packages:
+  - group: dotfiles
+    repo: git@github.com:dottsh/example-dotfiles.git
+    dest: ~/
+    items:
+      - name: .zshrc
+        type: file
   - group: brew dev stuff
     items:
       - name: infisical/get-cli/infisical
@@ -38,5 +44,9 @@ packages:
 ```
 
 ## Development
+
+```bash
+polyrepo init --url https://raw.githubusercontent.com/dottsh/workspace/refs/heads/main/.polyrepo.yaml --path ~/workspace/.polyrepo.yaml
+```
 
 ## Contributing
