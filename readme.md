@@ -45,8 +45,17 @@ packages:
 
 ## Development
 
+Install the [polyrepo](https://github.com/dottsh/lib/tree/main/cmd/polyrepo) cli:
+
+```bash
+go install github.com/polyrepopro/polyrepo@latest
+```
+
+and run the following to initialize the workspace:
+
 ```bash
 polyrepo init --url https://raw.githubusercontent.com/dottsh/workspace/refs/heads/main/.polyrepo.yaml --path ~/workspace/.polyrepo.yaml
+polyrepo sync
 ```
 
 ## Contributing
